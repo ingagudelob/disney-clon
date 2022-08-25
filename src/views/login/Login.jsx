@@ -1,12 +1,37 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import logo from "../../assets/images/logo.svg";
 import styled from "styled-components";
 import axios from "axios";
 
+import { useForm } from "react-hook-form";
+import { EXPRESIONES } from "../../models/ExpRegulares";
+import { UserContext } from "../../providers/UserProvider";
+
 const Login = () => {
   // ----------------------- Variables de estados -----------------------------
   const [dataUser, setDataUser] = useState([]);
+  const { setUserActive, setIsLogged } = useContext(UserContext);
 
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+  } = useForm();
+
+  const onSubmit = (data) => {
+    console.log(data);
+    axios
+      .post(urlApi, data)
+      .then((data) => {
+        setUserActive(data.data.user);
+        console.log(data.data);
+        setIsLogged(true);
+        // * Reset los campos
+      })
+      .catch(function (error) {
+        console.log(error.toJSON());
+      });
+  };
   // --------------------------------------------------------------------------
 
   const urlApi = "http://localhost:3004/users";
@@ -14,15 +39,15 @@ const Login = () => {
     setDataUser({ ...dataUser, [event.target.name]: event.target.value });
   };
 
-  const getData = async () => {
-    const data = await axios.get(urlApi).then((res) => res.data);
-    console.log(data);
-  };
+  // const getData = async () => {
+  //   const data = await axios.get(urlApi).then((res) => res.data);
+  //   console.log(data);
+  // };
 
   return (
     <>
       <Container>
-        <Wrap className="container-img">
+        <Wrap>
           <img src={logo} alt="logo-imve" />
         </Wrap>
 
@@ -31,27 +56,59 @@ const Login = () => {
           <hr />
         </Title>
         <ContainerInput>
-          <form>
-            <Label className="label-login">Usuario</Label>
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <Label>Usuario</Label>
             <Input
               name="user"
               type="text"
-              placeholder="ejemplo@manantial.co"
-              onChange={handleInput}
+              placeholder="ejemplo@correo.co"
+              {...register("user", {
+                required: {
+                  value: true,
+                  message: "El usuario es requerido",
+                },
+                pattern: {
+                  value: EXPRESIONES.EMAIL,
+                  message: "Formato no es correcto",
+                },
+              })}
             />
-            <Label className="label-login">Contraseña</Label>
+            {errors.user && (
+              <span style={{ float: "left", color: "red" }}>
+                {errors.user.message}
+              </span>
+            )}
+
+            <Label>Contraseña</Label>
             <Input
               name="password"
               type="password"
               placeholder="********"
-              onChange={handleInput}
+              {...register("password", {
+                required: {
+                  value: true,
+                  message: "La contraseña es requerida",
+                },
+                pattern: {
+                  value: EXPRESIONES.PASSWORD,
+                  message: "Formato no es correcto",
+                },
+                minLength: {
+                  value: 6,
+                  message: "Debe ser mayor a 6 caracteres",
+                },
+              })}
             />
+            {errors.password && (
+              <span style={{ float: "left", color: "red" }}>
+                {errors.password.message}
+              </span>
+            )}
+
+            <Button>
+              <div>Ingresar</div>
+            </Button>
           </form>
-        </ContainerInput>
-        <ContainerInput>
-          <Button className="signin-btn" type="button" onClick={getData}>
-            <div className="ingresar">Ingresar</div>
-          </Button>
         </ContainerInput>
       </Container>
     </>

@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navbar from "../components/navbar/Navbar";
+import { UserContext } from "../providers/UserProvider";
 import Error404 from "../views/404/404Page";
 import Hall from "../views/hall/Hall";
 import ApplicationRouter from "./ApplicationRouter";
@@ -10,8 +11,7 @@ import { PublicRouter } from "./PublicRouter";
 
 export const MainRouter = () => {
   //? Validacion de usuario logeado
-  // const { isLogged } = useContext(UserContext);
-  const [isLogged, setIsLogged] = useState(false);
+  const { isLogged } = useContext(UserContext);
 
   return (
     <BrowserRouter>
@@ -31,7 +31,6 @@ export const MainRouter = () => {
           path="/app/*"
           element={
             <PrivateRouter isLogged={isLogged}>
-              <Navbar />
               <ApplicationRouter />
             </PrivateRouter>
           }

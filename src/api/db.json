@@ -1,9 +1,49 @@
 {
-    "users": [
-        {
-            "id": 1,
-            "user": "inge@gmail.com",
-            "password": "123456789"
-        }
-    ]
+  "users": [
+    {
+      "id": 1,
+      "user": "inge@gmail.com",
+      "password": "123456789"
+    },
+    {
+      "user": "sandra@gmail.com",
+      "password": "1234567",
+      "id": 2
+    },
+    {
+      "user": "sandra@gmail.com",
+      "password": "1234567",
+      "id": 3
+    },
+    {
+      "user": "sandra@gmail.com",
+      "password": "1234567",
+      "id": 4
+    },
+    {
+      "user": "inge@gmail.com",
+      "password": "123456789",
+      "id": 5
+    },
+    {
+      "user": "inge@gmail.com",
+      "password": "123456789",
+      "id": 6
+    },
+    {
+      "user": "inge@gmail.com",
+      "password": "123456789",
+      "id": 7
+    },
+    {
+      "user": "inge@gmail.com",
+      "password": "123456789",
+      "id": 8
+    },
+    {
+      "user": "inge@gmail.com",
+      "password": "123456789",
+      "id": 9
+    }
+  ]
 }
