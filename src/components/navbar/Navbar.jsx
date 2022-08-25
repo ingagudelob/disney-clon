@@ -46,6 +46,7 @@ const Nav = styled.nav`
   display: flex;
   align-items: center;
   padding: 0 25px;
+  overflow-x: hidden;
 `;
 
 const Icon = styled.img`
