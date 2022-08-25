@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import card1 from "../../assets/images/viewers-disney.png";
 import card2 from "../../assets/images/viewers-marvel.png";
@@ -22,7 +23,9 @@ const ContentCategory = () => {
       </Wrap>
 
       <Wrap>
-        <img src={card4} atl="Disney" />
+        <NavLink to="/app/detail">
+          <img src={card4} atl="Pixar" />
+        </NavLink>
       </Wrap>
 
       <Wrap>

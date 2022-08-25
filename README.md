@@ -12,4 +12,5 @@ React-Hook-Form (Validaciones)
 
 ## Available Scripts
 
-In the project directory, you can run:
+server local: npm run fake-server
+front: npm start

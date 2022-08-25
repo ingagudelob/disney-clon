@@ -1,6 +1,5 @@
 import { useContext, useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Navbar from "../components/navbar/Navbar";
 import { UserContext } from "../providers/UserProvider";
 import Error404 from "../views/404/404Page";
 import Hall from "../views/hall/Hall";

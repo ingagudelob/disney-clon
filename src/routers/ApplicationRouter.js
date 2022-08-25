@@ -1,5 +1,6 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
+import ContentDetails from "../components/contentDetail/ContentDetails";
 import Home from "../components/home/Home";
 import Navbar from "../components/navbar/Navbar";
 
@@ -10,6 +11,7 @@ const ApplicationRouter = () => {
       <Navbar />
       <Routes>
         <Route exact index path="/home" element={<Home />} />
+        <Route exact path="/detail" element={<ContentDetails />} />
       </Routes>
     </>
   );
