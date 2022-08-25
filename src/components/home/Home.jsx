@@ -1,7 +1,33 @@
 import React from "react";
+import styled from "styled-components";
+import ContentCategory from "../contentCategory/ContentCategory";
+import SliderImg from "../slider/SliderImg";
 
 const Home = () => {
-  return <div>Home - Disney</div>;
+  return (
+    <Container>
+      <SliderImg />
+      <ContentCategory />
+    </Container>
+  );
 };
 
 export default Home;
+
+const Container = styled.main`
+  min-height: calc(100vh - 65px);
+  padding: 0 calc(3.5vw + 5px);
+  position: relative;
+
+  &:before {
+    background: url("/src/assets/images/home-background.png") center center /
+      cover no-repeat fixed;
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+  }
+`;
