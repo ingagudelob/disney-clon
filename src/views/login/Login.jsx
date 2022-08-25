@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import logo from "../../assets/images/logo.svg";
 import styled from "styled-components";
+import axios from "axios";
 
 const Login = () => {
   // ----------------------- Variables de estados -----------------------------
@@ -8,15 +9,21 @@ const Login = () => {
 
   // --------------------------------------------------------------------------
 
+  const urlApi = "http://localhost:3004/users";
   const handleInput = (event) => {
     setDataUser({ ...dataUser, [event.target.name]: event.target.value });
+  };
+
+  const getData = async () => {
+    const data = await axios.get(urlApi).then((res) => res.data);
+    console.log(data);
   };
 
   return (
     <>
       <Container>
         <Wrap className="container-img">
-          <img className="img-login" src={logo} alt="logo-imve" />
+          <img src={logo} alt="logo-imve" />
         </Wrap>
 
         <Title>
@@ -42,7 +49,7 @@ const Login = () => {
           </form>
         </ContainerInput>
         <ContainerInput>
-          <Button className="signin-btn" type="button">
+          <Button className="signin-btn" type="button" onClick={getData}>
             <div className="ingresar">Ingresar</div>
           </Button>
         </ContainerInput>
